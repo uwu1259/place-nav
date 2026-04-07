@@ -6,6 +6,7 @@ import Company from "./pages/company";
 import CompanyDetail from "./pages/company-detail";
 import CompanyAnalytics from "./pages/company-analytics";
 import CompanyQuestion from "./pages/company-question";
+import Layout from "./components/Layout";
 
 function App() {
   return (
@@ -13,11 +14,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/company" element={<Company />} />
-        <Route path="/company/:id" element={<CompanyDetail />} />
-        <Route path="/company-analytics" element={<CompanyAnalytics />} />
-        <Route path="/company-question" element={<CompanyQuestion />} />
+        <Route path="/home" element={<Layout><Home /></Layout>} />
+        <Route path="/company" element={<Layout><Company /></Layout>} />
+        <Route path="/company/:id" element={<Layout><CompanyDetail /></Layout>} />
+        <Route path="/company-analytics" element={<Layout><CompanyAnalytics /></Layout>} />
+        <Route path="/company-question" element={<Layout><CompanyQuestion /></Layout>} />
       </Routes>
     </Router>
   );

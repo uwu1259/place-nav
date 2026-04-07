@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FiTrendingUp, FiUsers, FiMapPin, FiClock } from "react-icons/fi";
 
 export default function Company() {
   const [companies, setCompanies] = useState([]);
@@ -21,238 +22,61 @@ export default function Company() {
   }, []);
 
   return (
-    <>
-      <style>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: "Poppins", sans-serif;
-        }
-
-        .companies-section {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-          min-height: 100vh;
-          overflow-x: hidden;
-          padding-bottom: 50px;
-        }
-
-        .bg, .trees {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          object-fit: cover;
-          pointer-events: none;
-        }
-
-        .trees {
-          z-index: 100;
-        }
-
-        .leaves {
-          position: fixed;
-          top: 0; left: 0; width: 100%; height: 100vh;
-          z-index: 90; pointer-events: none;
-        }
-
-        .leaves .set div {
-          position: absolute;
-          animation: fall 10s linear infinite;
-        }
-
-        @keyframes fall {
-          0% { top: -10%; opacity: 0; }
-          100% { top: 110%; opacity: 1; }
-        }
-
-        .content-wrapper {
-          position: relative;
-          z-index: 150;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 40px;
-          padding: 60px 40px;
-          width: 100%;
-          max-width: 1200px;
-        }
-
-        .header {
-          text-align: center;
-          animation: fadeInDown 1s ease-out;
-        }
-
-        @keyframes fadeInDown {
-          from { opacity: 0; transform: translateY(-30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header h1 {
-          font-size: 3.5em;
-          color: #fff;
-          text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
-          margin-bottom: 15px;
-          font-weight: 700;
-        }
-        
-        .grid-container {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 30px;
-          width: 100%;
-          animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .company-card {
-          background: rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border-radius: 20px;
-          padding: 30px;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-          box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-          border: 1px solid rgba(255,255,255,0.25);
-          transition: all 0.4s ease;
-          text-decoration: none;
-        }
-
-        .company-card:hover {
-          transform: translateY(-10px);
-          background: rgba(255, 255, 255, 0.25);
-          box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-          border: 1px solid rgba(255,255,255,0.5);
-        }
-
-        .company-name {
-          font-size: 1.5em;
-          color: #fff;
-          font-weight: 600;
-          text-shadow: 1px 1px 8px rgba(0,0,0,0.4);
-        }
-
-        .company-industry {
-          color: #f1f1f1;
-          font-size: 0.9em;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          font-weight: 500;
-        }
-
-        .company-stats {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 10px;
-          padding-top: 15px;
-          border-top: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .stat {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .stat span:first-child {
-          font-size: 0.8em;
-          color: #ddd;
-        }
-
-        .stat span:last-child {
-          font-size: 1.2em;
-          color: #fff;
-          font-weight: 600;
-        }
-
-        .loader {
-          color: white;
-          font-size: 1.5em;
-          margin-top: 50px;
-        }
-
-        .back-link {
-          align-self: flex-start;
-          color: #f1f1f1;
-          text-decoration: none;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background: rgba(143, 44, 36, 0.8);
-          padding: 10px 20px;
-          border-radius: 30px;
-          transition: 0.3s;
-        }
-
-        .back-link:hover {
-          background: #d64c42;
-          transform: translateX(-5px);
-        }
-      `}</style>
-
-      <section className="companies-section">
-        <div className="leaves">
-          <div className="set">
-            {[...Array(12)].map((_, i) => (
-              <div key={i} style={{ 
-                left: `${i * 8.5}%`, 
-                animationDuration: `${8 + (i % 5)}s`,
-                animationDelay: `${(i % 4)}s` 
-              }}>
-                <img src={`/images/leaf_0${(i % 4) + 1}.png`} alt="" width={30 + (i % 3) * 12} />
-              </div>
-            ))}
-          </div>
+    <div className="company-dashboard">
+      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <div>
+          <h1>Participating Companies</h1>
+          <p>Discover roles and packages offered by top recruiters.</p>
         </div>
+        <div style={{ background: 'white', padding: '10px 15px', borderRadius: '12px', fontSize: '0.9rem', color: 'var(--text-muted)', border: '1px solid var(--border-color)' }}>
+          Showing {companies.length} companies
+        </div>
+      </div>
 
-        <img src="/images/bg.jpg" className="bg" alt="" />
-        <img src="/images/trees.png" className="trees" alt="" />
-
-        <div className="content-wrapper">
-          <Link to="/home" className="back-link">
-            <span>←</span> Back to Home
-          </Link>
-          
-          <div className="header">
-            <h1>Participating Companies</h1>
-          </div>
-
-          {loading ? (
-            <div className="loader">Loading companies...</div>
-          ) : (
-            <div className="grid-container">
-              {companies.map((company) => (
-                <Link to={`/company/${company._id}`} key={company._id} className="company-card">
-                  <div className="company-industry">{company.industry || "Technology"}</div>
-                  <div className="company-name">{company.name}</div>
-                  
-                  <div className="company-stats">
-                    <div className="stat">
-                      <span>Avg Package</span>
-                      <span>{company.averagePackage ? `${company.averagePackage} LPA` : "N/A"}</span>
-                    </div>
-                    <div className="stat">
-                      <span>Students Placed</span>
-                      <span>{company.noOfStudentsPlaced || "0"}</span>
-                    </div>
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '50px', color: 'var(--text-muted)' }}>Loading companies...</div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '25px', marginTop: '20px' }}>
+          {companies.map((company, i) => (
+            <Link to={`/company/${company._id}`} key={company._id} style={{ textDecoration: 'none' }}>
+              <div className="dashboard-card" style={{ transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%', display: 'flex', flexDirection: 'column' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}>
+                
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+                  <div style={{ padding: '8px 12px', background: i % 2 === 0 ? 'var(--highlight-yellow)' : 'var(--primary-light)', color: i % 2 === 0 ? 'var(--highlight-yellow-text)' : 'var(--primary-accent)', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    {company.industry || "Technology"}
                   </div>
-                </Link>
-              ))}
-            </div>
-          )}
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                     {/* Placeholder for now */}
+                     <FiMapPin /> Multiple Locations
+                  </div>
+                </div>
+
+                <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '15px' }}>{company.name}</h3>
+                
+                <div style={{ display: 'flex', gap: '20px', marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--border-color)' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex: 1 }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <FiTrendingUp /> Avg Package
+                    </span>
+                    <span style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                      {company.averagePackage ? `${company.averagePackage} LPA` : "N/A"}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex: 1 }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <FiUsers /> Students Placed
+                    </span>
+                    <span style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                      {company.noOfStudentsPlaced || "0"}
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+            </Link>
+          ))}
         </div>
-      </section>
-    </>
+      )}
+    </div>
   );
 }

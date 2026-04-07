@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FiFilter, FiSearch, FiMessageSquare } from "react-icons/fi";
 
 export default function CompanyQuestion() {
   const [questions, setQuestions] = useState([]);
@@ -21,232 +22,58 @@ export default function CompanyQuestion() {
   }, []);
 
   return (
-    <>
-      <style>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: "Poppins", sans-serif;
-        }
-
-        .questions-section {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-          min-height: 100vh;
-          overflow-x: hidden;
-          padding-bottom: 50px;
-        }
-
-        .bg, .trees {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          object-fit: cover;
-          pointer-events: none;
-        }
-
-        .trees {
-          z-index: 100;
-        }
-
-        .leaves {
-          position: fixed;
-          top: 0; left: 0; width: 100%; height: 100vh;
-          z-index: 90; pointer-events: none;
-        }
-
-        .leaves .set div {
-          position: absolute;
-          animation: fall 10s linear infinite;
-        }
-
-        @keyframes fall {
-          0% { top: -10%; opacity: 0; }
-          100% { top: 110%; opacity: 1; }
-        }
-
-        .content-wrapper {
-          position: relative;
-          z-index: 150;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 40px;
-          padding: 60px 40px;
-          width: 100%;
-          max-width: 1000px;
-        }
-
-        .back-link {
-          align-self: flex-start;
-          color: #f1f1f1;
-          text-decoration: none;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background: rgba(143, 44, 36, 0.8);
-          padding: 10px 20px;
-          border-radius: 30px;
-          transition: 0.3s;
-        }
-
-        .back-link:hover {
-          background: #d64c42;
-          transform: translateX(-5px);
-        }
-
-        .header {
-          text-align: center;
-          animation: fadeInDown 1s ease-out;
-        }
-
-        @keyframes fadeInDown {
-          from { opacity: 0; transform: translateY(-30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header h1 {
-          font-size: 3.5em;
-          color: #fff;
-          text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
-          margin-bottom: 10px;
-          font-weight: 700;
-        }
-
-        .header p {
-          color: #f1f1f1;
-          font-size: 1.1em;
-          text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-        }
-
-        .questions-list {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          width: 100%;
-          animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .question-card {
-          background: rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border-radius: 20px;
-          padding: 30px;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-          box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-          border: 1px solid rgba(255,255,255,0.25);
-          transition: all 0.4s ease;
-          position: relative;
-        }
-
-        .question-card:hover {
-          background: rgba(255, 255, 255, 0.25);
-          box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-          transform: translateY(-5px);
-        }
-
-        .q-meta {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 15px;
-          font-size: 0.9em;
-          color: #ccc;
-          align-items: center;
-        }
-
-        .q-tag {
-          background: rgba(0,0,0,0.3);
-          padding: 6px 15px;
-          border-radius: 20px;
-          color: #fff;
-          font-weight: 500;
-          letter-spacing: 0.5px;
-        }
-
-        .q-tag.company-count {
-          background: #8f2c24;
-          box-shadow: 0 4px 10px rgba(143, 44, 36, 0.4);
-        }
-
-        .q-text {
-          font-size: 1.3em;
-          color: #fff;
-          font-weight: 500;
-          line-height: 1.5;
-          text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .loader {
-          color: white;
-          font-size: 1.5em;
-          margin-top: 50px;
-        }
-      `}</style>
-
-      <section className="questions-section">
-        <div className="leaves">
-          <div className="set">
-             {[...Array(12)].map((_, i) => (
-               <div key={i} style={{ 
-                 left: `${i * 8.5}%`, 
-                 animationDuration: `${8 + (i % 5)}s`,
-                 animationDelay: `${(i % 4)}s` 
-               }}>
-                 <img src={`/images/leaf_0${(i % 4) + 1}.png`} alt="" width={30 + (i % 3) * 12} />
-               </div>
-             ))}
-          </div>
+    <div className="questions-dashboard">
+      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
+        <div>
+          <h1>Interview Questions Hub</h1>
+          <p>Browse through authentic technical and HR queries asked by top recruiters.</p>
         </div>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <button style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '10px 15px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', color: 'var(--text-muted)' }}>
+            <FiFilter /> Filter
+          </button>
+        </div>
+      </div>
 
-        <img src="/images/bg.jpg" className="bg" alt="" />
-        <img src="/images/trees.png" className="trees" alt="" />
-
-        <div className="content-wrapper">
-          <Link to="/home" className="back-link">
-            <span>←</span> Back to Home
-          </Link>
-          
-          <div className="header">
-            <h1>Interview Questions Hub</h1>
-            <p>Browse through hundreds of authentic technical and HR queries asked by top recruiters.</p>
-          </div>
-
-          {loading ? (
-            <div className="loader">Loading all question data...</div>
-          ) : (
-            <div className="questions-list">
-              {questions.map((q) => (
-                <div key={q._id} className="question-card">
-                  <div className="q-meta">
-                    <span className="q-tag">{q.type}</span>
-                    <span className="q-tag">{q.difficulty}</span>
-                    <span className="q-tag">{q.role}</span>
-                    <span className="q-tag company-count">
-                      🏢 Asked by {q.companies ? q.companies.length : 0} {q.companies && q.companies.length === 1 ? 'Company' : 'Companies'}
+      {loading ? (
+        <div style={{ padding: '50px', textAlign: 'center', color: 'var(--text-muted)' }}>Loading all question data...</div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '30px' }}>
+          {questions.map((q) => (
+            <div key={q._id} className="dashboard-card" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+              <div style={{ padding: '15px', background: 'var(--primary-light)', borderRadius: '16px', color: 'var(--primary-accent)', flexShrink: 0 }}>
+                <FiMessageSquare size={24} />
+              </div>
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+                <div>
+                  <h3 style={{ fontSize: '1.1rem', color: 'var(--text-main)', margin: '0 0 10px 0', fontWeight: '600' }}>
+                    {q.text?.length > 60 ? q.text.substring(0, 60) + '...' : q.text}
+                  </h3>
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <span style={{ padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', background: 'var(--highlight-yellow)', color: 'var(--highlight-yellow-text)' }}>
+                      Topic: {q.type}
                     </span>
+                    <span style={{ padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', background: 'var(--highlight-orange)', color: 'var(--highlight-orange-text)' }}>
+                      Diff: {q.difficulty}
+                    </span>
+                    <span style={{ padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', border: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                      {q.role}
+                    </span>
+                    {q.companies && q.companies.length > 0 && (
+                      <span style={{ fontSize: '0.8rem', color: 'white', background: 'var(--primary-accent)', padding: '4px 12px', borderRadius: '20px', fontWeight: '600' }}>
+                        {q.companies.length} {q.companies.length === 1 ? 'Company' : 'Companies'}
+                      </span>
+                    )}
                   </div>
-                  <div className="q-text">{q.text}</div>
                 </div>
-              ))}
+                <a href="#" style={{ padding: '8px 16px', background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
+                  View Link
+                </a>
+              </div>
             </div>
-          )}
+          ))}
         </div>
-      </section>
-    </>
+      )}
+    </div>
   );
 }
