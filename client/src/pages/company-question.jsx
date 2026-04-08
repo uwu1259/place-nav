@@ -66,7 +66,7 @@ export default function CompanyQuestion() {
                     )}
                   </div>
                 </div>
-                <a href="#" style={{ padding: '8px 16px', background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
+                <a href={q.link} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 16px', background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
                   View Link
                 </a>
               </div>

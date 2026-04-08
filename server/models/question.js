@@ -14,6 +14,10 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     required: true, // e.g., "Software Development Engineer"
   },
+  link: {
+    type: String,
+    required: true,
+  },
   difficulty: {
     type: String,
     enum: ["Easy", "Medium", "Hard"],

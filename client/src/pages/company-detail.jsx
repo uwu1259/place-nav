@@ -41,8 +41,12 @@ export default function CompanyDetail() {
       <div className="dashboard-card" style={{ marginBottom: '30px', display: 'flex', gap: '30px', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-            <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'var(--primary-light)', color: 'var(--primary-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 'bold' }}>
-              {company.name.charAt(0)}
+            <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'var(--primary-light)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {company.logoUrl ? (
+                <img src={company.logoUrl} alt={company.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              ) : (
+                <span style={{ color: 'var(--primary-accent)', fontSize: '1.5rem', fontWeight: 'bold' }}>{company.name.charAt(0)}</span>
+              )}
             </div>
             <div>
               <h1 style={{ fontSize: '2rem', color: 'var(--text-main)', margin: 0 }}>{company.name}</h1>
@@ -111,7 +115,7 @@ export default function CompanyDetail() {
                     </span>
                   </div>
                 </div>
-                <a href="#" style={{ padding: '8px 16px', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
+                <a href={q.link} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 16px', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
                   View Link
                 </a>
               </div>

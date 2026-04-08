@@ -54,10 +54,44 @@ export default function CompanyAnalytics() {
 
       </div>
 
-      <div className="dashboard-card" style={{ marginTop: '30px', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '15px' }}>
-        <FiPieChart size={48} color="var(--border-color)" />
-        <h3 style={{ color: 'var(--text-muted)', fontWeight: '500' }}>Detailed Analytics Charts Coming Soon</h3>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>We are aggregating the latest placement data.</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '30px', marginTop: '30px' }}>
+        
+        <div className="dashboard-card" style={{ padding: '20px' }}>
+          <h3 style={{ fontSize: '1.1rem', marginBottom: '15px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <FiActivity color="var(--primary-accent)" /> Average CTC by Branch
+          </h3>
+          <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', background: 'white' }}>
+            <img src="/statistics/avg_ctc_branch.png" alt="Average CTC by Branch" style={{ width: '100%', display: 'block' }} />
+          </div>
+        </div>
+
+        <div className="dashboard-card" style={{ padding: '20px' }}>
+          <h3 style={{ fontSize: '1.1rem', marginBottom: '15px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <FiPieChart color="var(--primary-accent)" /> CTC Distribution
+          </h3>
+          <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', background: 'white' }}>
+            <img src="/statistics/ctc_distribution.png" alt="CTC Distribution" style={{ width: '100%', display: 'block' }} />
+          </div>
+        </div>
+
+        <div className="dashboard-card" style={{ padding: '20px' }}>
+          <h3 style={{ fontSize: '1.1rem', marginBottom: '15px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <FiActivity color="var(--primary-accent)" /> Gender Distribution
+          </h3>
+          <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', background: 'white' }}>
+            <img src="/statistics/gender_distribution.png" alt="Gender Distribution" style={{ width: '100%', display: 'block' }} />
+          </div>
+        </div>
+
+        <div className="dashboard-card" style={{ padding: '20px' }}>
+          <h3 style={{ fontSize: '1.1rem', marginBottom: '15px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <FiTrendingUp color="var(--primary-accent)" /> Top Recruiters
+          </h3>
+          <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', background: 'white' }}>
+            <img src="/statistics/top_companies.png" alt="Top Recruiters" style={{ width: '100%', display: 'block' }} />
+          </div>
+        </div>
+
       </div>
 
     </div>

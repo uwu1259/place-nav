@@ -41,13 +41,21 @@ export default function Company() {
             <Link to={`/company/${company._id}`} key={company._id} style={{ textDecoration: 'none' }}>
               <div className="dashboard-card" style={{ transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%', display: 'flex', flexDirection: 'column' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}>
                 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-                  <div style={{ padding: '8px 12px', background: i % 2 === 0 ? 'var(--highlight-yellow)' : 'var(--primary-light)', color: i % 2 === 0 ? 'var(--highlight-yellow-text)' : 'var(--primary-accent)', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    {company.industry || "Technology"}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'var(--primary-light)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {company.logoUrl ? (
+                      <img src={company.logoUrl} alt={company.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    ) : (
+                      <span style={{ color: 'var(--primary-accent)', fontSize: '1.1rem', fontWeight: 'bold' }}>{company.name.charAt(0)}</span>
+                    )}
                   </div>
-                  <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                     {/* Placeholder for now */}
-                     <FiMapPin /> Multiple Locations
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '5px' }}>
+                    <div style={{ padding: '4px 10px', background: i % 2 === 0 ? 'var(--highlight-yellow)' : 'var(--primary-light)', color: i % 2 === 0 ? 'var(--highlight-yellow-text)' : 'var(--primary-accent)', borderRadius: '6px', fontSize: '0.7rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      {company.industry || "Technology"}
+                    </div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <FiMapPin size={14} /> Multiple
+                    </div>
                   </div>
                 </div>
 
